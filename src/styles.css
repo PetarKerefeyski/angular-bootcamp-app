@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+.nav-bar {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background: #1976d2;
+}
+.nav-bar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.active {
+  text-decoration: underline;
+}
+main {
+  padding: 16px;
+}
