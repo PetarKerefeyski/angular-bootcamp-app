@@ -8,9 +8,9 @@ export const routes: Routes = [
   { path: 'template-form', loadComponent: () => import('./template-form/template-form.component').then(m => m.TemplateFormComponent) },
   { path: 'reactive-form', loadComponent: () => import('./reactive-form/reactive-form.component').then(m => m.ReactiveFormComponent) },
   { path: 'state-rxjs', loadComponent: () => import('./state-rxjs/state-rxjs.component').then(m => m.StateRxjsComponent) },
-  { path: 'state-ngrx', loadComponent: () => import('./ngrx/ngrx.component').then(m => m.NgrxComponent) },
   { path: 'parent', loadComponent: () => import('./parent/parent.component').then(m => m.ParentComponent) },
   { path: 'change-detection', loadComponent: () => import('./change-detection/change-detection.component').then(m => m.ChangeDetectionComponent) },
+  { path: 'ngrx', loadComponent: () => import('./ngrx/ngrx.component').then(m => m.NgrxComponent) },
   { path: 'signals', loadComponent: () => import('./signals/signals.component').then(m => m.SignalsComponent) },
   { path: '', redirectTo: '/service', pathMatch: 'full' },
   { path: '**', redirectTo: '/service' }

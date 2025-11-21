@@ -16,8 +16,10 @@ import {JsonPipe} from '@angular/common';
 export class SubjectComponent {
   posts: any;
 
-  constructor(private postService: PostService) {
-    this.postService.post$.subscribe(data => this.posts = data);
+  constructor(readonly postService: PostService) {
+    this.postService.post$.subscribe(data =>
+      this.posts = data
+    );
   }
 
   load() {

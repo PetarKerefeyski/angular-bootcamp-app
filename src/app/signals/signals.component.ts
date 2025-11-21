@@ -2,47 +2,51 @@ import { Component, computed, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-signals',
+  selector: 'app-simple-counter',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <h2>Angular Signals Demo</h2>
+    <h2>🔢 Simple Counter with Signals</h2>
 
-    <!-- signal() for Local State -->
-    <p>Counter: {{ counter() }}</p>
-    <button (click)="increment()">Increment</button>
-    <button (click)="reset()">Reset</button>
-
-    <!-- computed() for Derived State -->
+    <p>Count: {{ count() }}</p>
     <p>Status: {{ status() }}</p>
+    <p>{{ message }}</p>
 
-    <!-- Effect Logs -->
-    <p *ngIf="logMessage">{{ logMessage }}</p>
+    <button (click)="increase()">+1</button>
+    <button (click)="decrease()">-1</button>
+    <button (click)="reset()">Reset</button>
   `
 })
 export class SignalsComponent {
-  counter = signal(0);
+  // signal() for local state
+  count = signal(0);
 
+  // computed() for dynamic label based on count
   status = computed(() => {
-    const count = this.counter();
-    if (count === 0) return 'Ready';
-    if (count < 5) return 'Warming up...';
-    return 'Hot!';
+    const value = this.count();
+    if (value > 5) return 'High';
+    if (value < -5) return 'Low';
+    return 'Normal';
   });
 
-  logMessage = '';
+  // effect() to update a message when the count changes
+  message = '';
   constructor() {
     effect(() => {
-      const current = this.counter();
-      this.logMessage = `Effect: Counter is now ${current}`;
+      this.message = `🧠 The count is now: ${this.count()}`;
     });
   }
 
-  increment() {
-    this.counter.update(value => value + 1);
+  // Methods to update state
+  increase() {
+    this.count.update(value => value + 1);
+  }
+
+  decrease() {
+    this.count.update(value => value - 1);
   }
 
   reset() {
-    this.counter.set(0);
+    this.count.set(0);
   }
 }
