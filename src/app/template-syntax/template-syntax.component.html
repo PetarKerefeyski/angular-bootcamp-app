@@ -1,0 +1,85 @@
+<div class="container">
+  <h1>Angular New Template Syntax Demo</h1>
+
+  <!-- @if example -->
+  <section class="card">
+    <h2>&#64;if example</h2>
+
+    <button (click)="isLoggedIn = !isLoggedIn">
+      Toggle login (currently: {{ isLoggedIn ? 'Logged in' : 'Logged out' }})
+    </button>
+
+    @if (isLoggedIn) {
+      <p class="success">Welcome back, {{ username }}!</p>
+    } @else {
+      <p class="info">Please log in to continue.</p>
+    }
+  </section>
+
+  <!-- @for example -->
+  <section class="card">
+    <h2>&#64;for example</h2>
+
+    <ul>
+      @for (user of users; track user.id; let i = $index) {
+        <li>
+          {{ i + 1 }}. {{ user.name }} ({{ user.role }})
+        </li>
+      }
+    </ul>
+  </section>
+
+  <!-- @switch example -->
+  <section class="card">
+    <h2>&#64;switch example</h2>
+
+    <label>
+      Select status:
+      <select [(ngModel)]="status">
+        @for (s of statuses; track s) {
+          <option [value]="s">{{ s }}</option>
+        }
+      </select>
+    </label>
+
+    @switch (status) {
+      @case ('online') {
+        <p class="status online">User is online ✅</p>
+      }
+      @case ('away') {
+        <p class="status away">User is away ⏳</p>
+      }
+      @case ('offline') {
+        <p class="status offline">User is offline ❌</p>
+      }
+      @default {
+        <p class="status">Unknown status 🤷‍♂️</p>
+      }
+    }
+  </section>
+
+  <!-- Spacer to push defer off-screen -->
+  <div class="spacer"></div>
+
+  <!-- @defer example -->
+  <section class="card">
+    <h2>&#64;defer example</h2>
+
+    <p>
+      Scroll down. The deferred content loads only when this section becomes visible.
+    </p>
+
+    @defer (on viewport) {
+      <div class="deferred">
+        <h3>Deferred content</h3>
+        <p>
+          This content was loaded lazily using <code>&#64;defer</code> when it entered the viewport.
+        </p>
+      </div>
+    } @placeholder {
+      <p class="placeholder">
+        Placeholder: content will load once you scroll down…
+      </p>
+    }
+  </section>
+</div>

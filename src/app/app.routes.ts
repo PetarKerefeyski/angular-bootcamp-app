@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'change-detection', loadComponent: () => import('./change-detection/change-detection.component').then(m => m.ChangeDetectionComponent) },
   { path: 'ngrx', loadComponent: () => import('./ngrx/ngrx.component').then(m => m.NgrxComponent) },
   { path: 'signals', loadComponent: () => import('./signals/signals.component').then(m => m.SignalsComponent) },
+  { path: 'template-syntax', loadComponent: () => import('./template-syntax/template-syntax.component').then(m => m.TemplateSyntaxComponent) },
   { path: '', redirectTo: '/service', pathMatch: 'full' },
   { path: '**', redirectTo: '/service' }
 ];
